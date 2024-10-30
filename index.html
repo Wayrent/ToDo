@@ -1,153 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
-    <title>ToDo List</title>
-    <style>
-        body {
-            font-family: Montserrat, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            text-align: center;
-        }
-        #todo-container {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 20px;
-        }
-        #todo-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background: #fff;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s ease;
-        }
-        li:hover {
-            background: #e0e0e0;
-        }
-        li.completed {
-            background: #d3e2d7; 
-            color: #666; 
-        }
-        button {
-            background: #0ca038;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        button:hover {
-            background: #0e8130;
-        }
-        input {
-            width: calc(100% - 22px);
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .add-button {
-            width: 100%;
-            margin-top: 10px;
-            padding: 1vh;
-        }
-        .delete-icon, .complete-icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 20px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        .delete-icon {
-            background-color: red;
-            color: white;
-        }
-        .delete-icon:hover {
-            background-color: darkred;
-        }
-        .complete-icon {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .complete-icon:hover {
-            background-color: #357937;
-        }
-        .task-buttons {
-            display: flex;
-            justify-content: flex-end; 
-        }
-    </style>
-</head>
-<body>
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"> 
+    <link rel="stylesheet" href="/styles/style.css"/> 
+    <script src="/scripts/script.js" defer></script> 
+    <title>ToDo List</title> 
+</head> 
+<body> 
+ 
+    <h1>ToDo</h1> 
+    <div id="todo-container"> 
+        <input type="text" id="todo-input" placeholder="Введите задачу..."> 
+        <button class="add-button" onclick="addTodo()">Добавить</button> 
+        <ul id="todo-list"></ul> 
+    </div> 
+</body> 
+</html> 
 
-    <h1>ToDo</h1>
-    <div id="todo-container">
-        <input type="text" id="todo-input" placeholder="Введите задачу...">
-        <button class="add-button" onclick="addTodo()">Добавить</button>
-
-        <ul id="todo-list"></ul>
-    </div>
-
-    <script>
-        function addTodo() {
-            const input = document.getElementById('todo-input');
-            const todoText = input.value.trim();
-
-            if (todoText === '') {
-                alert('Сначала введите задачу!');
-                return;
-            }
-
-            const li = document.createElement('li');
-
-            const span = document.createElement('span');
-            span.textContent = todoText;
-
-            const taskButtons = document.createElement('div');
-            taskButtons.classList.add('task-buttons');
-
-            const completeIcon = document.createElement('span');
-            completeIcon.classList.add('complete-icon');
-            completeIcon.textContent = '✓';
-            completeIcon.onclick = function(event) {
-                event.stopPropagation();
-                li.classList.toggle('completed'); 
-            };
-
-            const deleteIcon = document.createElement('span');
-            deleteIcon.classList.add('delete-icon');
-            deleteIcon.textContent = '✕';
-            deleteIcon.onclick = function(event) {
-                event.stopPropagation();
-                li.remove();
-            };
-
-            // Добавление элементов в DOM
-            taskButtons.appendChild(completeIcon); 
-            taskButtons.appendChild(deleteIcon); 
-            li.appendChild(span); 
-            li.appendChild(taskButtons); 
-            document.getElementById('todo-list').appendChild(li); 
-            input.value = '';
-        }
-    </script>
-</body>
-</html>
