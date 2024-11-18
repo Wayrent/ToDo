@@ -30,11 +30,11 @@ li {
     transition: 0.3s ease;
 }
 li:hover {
-    background: #e0e0e0;
+    background: #f0f0f0;
 }
 li.completed {
-    background: #d3e2d7; 
-    color: #666; 
+    background: #e8eee5; 
+    color: #008145; 
 }
 button {
     background: #0ca038;
